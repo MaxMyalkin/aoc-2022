@@ -3,15 +3,15 @@ package common
 import com.google.common.io.Resources
 import java.io.File
 
-private fun getResourcePath(dayNumber: Int, taskNumber: Int, fileName: String): String{
-    return Resources.getResource("day_$dayNumber/task_$taskNumber/$fileName")
+private fun getResourcePath(dayNumber: Int, fileName: String): String{
+    return Resources.getResource("day_$dayNumber/$fileName")
         .path
         .toString()
 }
-fun getInputFile(dayNumber: Int, taskNumber: Int): File {
-    return File(getResourcePath(dayNumber, taskNumber, "input.txt"))
+fun getInputFile(dayNumber: Int): File {
+    return File(getResourcePath(dayNumber, "input.txt"))
 }
 
-fun getSampleFile(dayNumber: Int, taskNumber: Int): File {
-    return File(getResourcePath(dayNumber, taskNumber, "sample.txt"))
+fun getSampleFile(dayNumber: Int): File {
+    return File(getResourcePath(dayNumber, "sample.txt"))
 }
