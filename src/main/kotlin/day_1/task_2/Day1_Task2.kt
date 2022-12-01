@@ -1,17 +1,14 @@
-package day_1.task_1
+package day_1.task_2
 
 import common.getInputFile
 import common.getSampleFile
-import java.io.File
 
 fun main() {
-    var maxCalories = Long.MIN_VALUE
+    val elfCaloriesList = mutableListOf<Long>()
     var currentElfCalories = 0L
 
     fun changeElf() {
-        if (currentElfCalories > maxCalories) {
-            maxCalories = currentElfCalories
-        }
+        elfCaloriesList.add(currentElfCalories)
         currentElfCalories = 0
     }
 
@@ -22,5 +19,7 @@ fun main() {
     }
     changeElf()
 
-    println("Max calories = $maxCalories")
+    val top3Sum = elfCaloriesList.apply { sortDescending() }.take(3).sum()
+
+    println("Top 3 calories sum = $top3Sum")
 }
