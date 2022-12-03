@@ -4,7 +4,7 @@ import common.getInputFile
 import common.getSampleFile
 import java.io.File
 
-fun playGame(file: File, game: Game): Long {
+private fun playGame(file: File, game: Game): Long {
     file.bufferedReader().forEachLine {
         val stringElements = it.split(" ")
         val opponentElement = stringElements[0]

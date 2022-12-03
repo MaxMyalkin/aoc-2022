@@ -4,7 +4,7 @@ import common.getInputFile
 import common.getSampleFile
 import java.io.File
 
-fun part1(file: File): Long {
+private fun part1(file: File): Long {
     var maxCalories = Long.MIN_VALUE
     var currentElfCalories = 0L
 
@@ -25,7 +25,7 @@ fun part1(file: File): Long {
     return maxCalories
 }
 
-fun part2(file: File): Long {
+private fun part2(file: File): Long {
     val elfCaloriesList = mutableListOf<Long>()
     var currentElfCalories = 0L
 
