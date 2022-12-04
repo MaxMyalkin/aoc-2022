@@ -14,7 +14,15 @@ private fun isRangeContainsEachOther(first: IntRange, second: IntRange): Boolean
     return first.contains(second.first) && first.contains(second.last) ||
             second.contains(first.first) && second.contains(first.last)
 }
-private fun part1(file: File): Int {
+
+private fun isRangeOverlapsEachOther(first: IntRange, second: IntRange): Boolean {
+    return first.contains(second.first) ||
+            first.contains(second.last) ||
+            second.contains(first.first) ||
+            second.contains(first.last)
+}
+
+private fun countRanges(file: File, rangeCalculator: (IntRange, IntRange) -> Boolean): Int {
     return file.bufferedReader()
         .readLines()
         .map {
@@ -22,7 +30,7 @@ private fun part1(file: File): Int {
             if(ranges.size != 2) error("Incorrect input")
             val firstElfRange = createRange(ranges[0])
             val secondElfRange = createRange(ranges[1])
-            isRangeContainsEachOther(firstElfRange, secondElfRange)
+            rangeCalculator(firstElfRange, secondElfRange)
         }
         .count { it }
 }
@@ -31,6 +39,9 @@ fun main() {
     val input = getInputFile(4)
     val sample = getSampleFile(4)
 
-    check(part1(sample) == 2)
-    println("Part1 = ${part1(input)}")
+    check(countRanges(sample, ::isRangeContainsEachOther) == 2)
+    println("Part1 = ${countRanges(input,::isRangeContainsEachOther)}")
+
+    check(countRanges(sample, ::isRangeOverlapsEachOther) == 4)
+    println("Part2 = ${countRanges(input,::isRangeOverlapsEachOther)}")
 }
