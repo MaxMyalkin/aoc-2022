@@ -129,6 +129,32 @@ private fun calculateTreeResult(folder: Structure.Folder): Int {
     return result
 }
 
+private fun getAllDirsLargerThanLimit(root: Structure.Folder, limit: Int): List<Int> {
+    val sizes = mutableListOf<Int>()
+    if(root.size >= limit) {
+        sizes.add(root.size)
+    }
+    root.content.forEach {
+        if(it is Structure.Folder) {
+            sizes.addAll(getAllDirsLargerThanLimit(it, limit))
+        }
+    }
+    return sizes
+}
+private fun deleteDirectory(file: File): Int {
+    val consoleOutput = getConsoleOutput(file)
+    val result = buildFileTree(consoleOutput, 0, null)
+    val root = result.root!!
+    val usedSpace = root.size
+    val fullSpace = 70_000_000
+    val freeSpace = fullSpace - usedSpace
+    val requiredSpace = 30_000_000
+    val needToDelete = requiredSpace - freeSpace
+    return getAllDirsLargerThanLimit(root, needToDelete)
+        .sorted()
+        .first()
+}
+
 fun main() {
 
     val input = getInputFile(7)
@@ -136,4 +162,7 @@ fun main() {
 
     check(calculateSize(sample) == 95437)
     println("Part1 = ${calculateSize(input)}")
+
+    check(deleteDirectory(sample) == 24933642)
+    println("Part2 = ${deleteDirectory(input)}")
 }
