@@ -2,7 +2,7 @@ package day_2
 
 import GameElement
 
-class Task1GameStrategy: Game {
+class Task1GameStrategy : Game {
     override var finalScore = 0L
         private set
 
@@ -11,6 +11,7 @@ class Task1GameStrategy: Game {
         "Y" to GameElement.PAPER,
         "Z" to GameElement.SCISSORS,
     )
+
     override fun addRound(myStringElement: String, opponentStringElement: String) {
 
         val opponentElement = GameElement.findElement(opponentStringElement)

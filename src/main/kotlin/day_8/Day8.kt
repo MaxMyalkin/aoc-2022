@@ -13,6 +13,7 @@ private fun createMatrixFromFile(
             it.toCharArray().map { it.digitToInt() }
         }
 }
+
 private fun calculateVisibleItemCount(
     file: File
 ): Int {
@@ -23,6 +24,7 @@ private fun calculateVisibleItemCount(
         }.count { it }
     }.sum()
 }
+
 private fun checkIfItemVisible(
     matrix: List<List<Int>>,
     i: Int,
@@ -60,7 +62,7 @@ private fun calculateScenicScore(
     fun <T> List<T>.countOfFirst(predicate: (T) -> Boolean): Int {
         var count = 0
         forEach {
-            if(predicate(it)) {
+            if (predicate(it)) {
                 count++
             } else {
                 return ++count
@@ -72,9 +74,11 @@ private fun calculateScenicScore(
     val leftScenicScore = row.subList(0, j).reversed().takeIf { it.isNotEmpty() }?.countOfFirst { it < element } ?: 0
     val rightScenicScore = row.subList(j + 1, row.size).takeIf { it.isNotEmpty() }?.countOfFirst { it < element } ?: 0
     val topScenicScore = column.subList(0, i).reversed().takeIf { it.isNotEmpty() }?.countOfFirst { it < element } ?: 0
-    val bottomScenicScore = column.subList(i + 1, row.size).takeIf { it.isNotEmpty() }?.countOfFirst { it < element } ?: 0
+    val bottomScenicScore =
+        column.subList(i + 1, row.size).takeIf { it.isNotEmpty() }?.countOfFirst { it < element } ?: 0
     return leftScenicScore * rightScenicScore * topScenicScore * bottomScenicScore
 }
+
 private fun calculateBestScenicScore(
     file: File
 ): Int {

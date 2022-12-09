@@ -5,7 +5,7 @@ import common.getSampleFile
 import java.io.File
 
 private fun findCommonItem(backpackList: List<String>): Char? {
-    if(backpackList.size < 2) return null
+    if (backpackList.size < 2) return null
 
     val firstBackPack = backpackList.first()
     val othersBackPack = backpackList.subList(1, backpackList.size)
@@ -14,15 +14,17 @@ private fun findCommonItem(backpackList: List<String>): Char? {
         othersBackPack.all { it.contains(mainBackPackItem) }
     }
 }
+
 private fun scoreItem(item: Char): Int {
     val startScore = 1
     val startCapitalScore = 27
-    return if(item.isUpperCase()) {
+    return if (item.isUpperCase()) {
         startCapitalScore + item.code - 'A'.code
     } else {
         startScore + item.code - 'a'.code
     }
 }
+
 private fun calculateScoreForBackPack(backPackItems: String): Int {
     val centerIndex = backPackItems.length / 2
     val firstHalf = backPackItems.substring(startIndex = 0, endIndex = centerIndex)
@@ -47,6 +49,7 @@ private fun calculateElfGroupScore(group: List<String>): Int {
     val commonItem = findCommonItem(group) ?: error("Group $group have to common item")
     return scoreItem(commonItem)
 }
+
 private fun part2(file: File): Int {
     return file.bufferedReader()
         .lineSequence()
@@ -56,6 +59,7 @@ private fun part2(file: File): Int {
         }
         .reduce { first, second -> first + second }
 }
+
 fun main() {
 
     val sample = getSampleFile(3)

@@ -6,7 +6,7 @@ import java.io.File
 
 private fun createRange(strRange: String): IntRange {
     val splitted = strRange.split("-")
-    if(splitted.size != 2) error("Incorrect input")
+    if (splitted.size != 2) error("Incorrect input")
     return IntRange(splitted[0].toInt(), splitted[1].toInt())
 }
 
@@ -27,7 +27,7 @@ private fun countRanges(file: File, rangeCalculator: (IntRange, IntRange) -> Boo
         .readLines()
         .map {
             val ranges = it.split(",")
-            if(ranges.size != 2) error("Incorrect input")
+            if (ranges.size != 2) error("Incorrect input")
             val firstElfRange = createRange(ranges[0])
             val secondElfRange = createRange(ranges[1])
             rangeCalculator(firstElfRange, secondElfRange)
@@ -40,8 +40,8 @@ fun main() {
     val sample = getSampleFile(4)
 
     check(countRanges(sample, ::isRangeContainsEachOther) == 2)
-    println("Part1 = ${countRanges(input,::isRangeContainsEachOther)}")
+    println("Part1 = ${countRanges(input, ::isRangeContainsEachOther)}")
 
     check(countRanges(sample, ::isRangeOverlapsEachOther) == 4)
-    println("Part2 = ${countRanges(input,::isRangeOverlapsEachOther)}")
+    println("Part2 = ${countRanges(input, ::isRangeOverlapsEachOther)}")
 }

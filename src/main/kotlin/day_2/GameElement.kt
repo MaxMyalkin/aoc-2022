@@ -1,4 +1,3 @@
-
 enum class GameElement(
     val play: String,
     val score: Int
@@ -6,6 +5,7 @@ enum class GameElement(
     ROCK(play = "A", score = 1),
     PAPER(play = "B", score = 2),
     SCISSORS(play = "C", score = 3);
+
     companion object {
 
         fun findElement(play: String): GameElement {

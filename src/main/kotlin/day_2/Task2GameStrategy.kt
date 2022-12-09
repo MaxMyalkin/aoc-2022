@@ -1,6 +1,6 @@
 package day_2
 
-class Task2GameStrategy: Game {
+class Task2GameStrategy : Game {
     override var finalScore = 0L
         private set
 
@@ -9,6 +9,7 @@ class Task2GameStrategy: Game {
         "Y" to GameResult.DRAW,
         "Z" to GameResult.WIN,
     )
+
     override fun addRound(myStringElement: String, opponentStringElement: String) {
         val opponentElement = GameElement.findElement(opponentStringElement)
         val expectedResult = playResultsMap[myStringElement] ?: error("Can not find result for $myStringElement")

@@ -5,11 +5,12 @@ import common.getInputFile
 private fun String.containsDifferentChars(): Boolean {
     return toSet().size == length
 }
+
 private fun findStartMessageMarker(input: String, packetSize: Int): Int {
     var currentIndex = 0
     while (currentIndex + packetSize <= input.length) {
         val substring = input.substring(currentIndex, currentIndex + packetSize)
-        if(substring.containsDifferentChars()) {
+        if (substring.containsDifferentChars()) {
             return currentIndex + packetSize
         } else {
             currentIndex++

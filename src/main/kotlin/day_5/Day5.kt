@@ -3,7 +3,6 @@ package day_5
 import common.getInputFile
 import common.getSampleFile
 import java.io.File
-import java.util.Stack
 
 
 private fun readColumnCount(file: File): Int {

@@ -131,16 +131,17 @@ private fun calculateTreeResult(folder: Structure.Folder): Int {
 
 private fun getAllDirsLargerThanLimit(root: Structure.Folder, limit: Int): List<Int> {
     val sizes = mutableListOf<Int>()
-    if(root.size >= limit) {
+    if (root.size >= limit) {
         sizes.add(root.size)
     }
     root.content.forEach {
-        if(it is Structure.Folder) {
+        if (it is Structure.Folder) {
             sizes.addAll(getAllDirsLargerThanLimit(it, limit))
         }
     }
     return sizes
 }
+
 private fun deleteDirectory(file: File): Int {
     val consoleOutput = getConsoleOutput(file)
     val result = buildFileTree(consoleOutput, 0, null)
